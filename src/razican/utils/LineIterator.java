@@ -9,46 +9,46 @@ import java.util.Iterator;
  */
 public class LineIterator implements Iterator<String> {
 
-    private final BufferedReader reader;
-    private String lastLine;
+	private final BufferedReader reader;
+	private String lastLine;
 
-    /**
-     * @param reader
-     *            Reader for the iterator
-     */
-    public LineIterator(final BufferedReader reader) {
-	this.reader = reader;
-    }
-
-    @Override
-    public boolean hasNext() {
-	try {
-	    return (lastLine = reader.readLine()) != null;
-	} catch (final IOException e) {
-	    e.printStackTrace();
+	/**
+	 * @param reader
+	 *            Reader for the iterator
+	 */
+	public LineIterator(final BufferedReader reader) {
+		this.reader = reader;
 	}
 
-	return false;
-    }
+	@Override
+	public boolean hasNext() {
+		try {
+			return (lastLine = reader.readLine()) != null;
+		} catch (final IOException e) {
+			e.printStackTrace();
+		}
 
-    @Override
-    public String next() {
-	String line = null;
-	if (lastLine != null) {
-	    line = lastLine;
-	} else {
-	    try {
-		line = reader.readLine();
-	    } catch (final IOException e) {
-		e.printStackTrace();
-	    }
+		return false;
 	}
-	lastLine = null;
 
-	return line;
-    }
+	@Override
+	public String next() {
+		String line = null;
+		if (lastLine != null) {
+			line = lastLine;
+		} else {
+			try {
+				line = reader.readLine();
+			} catch (final IOException e) {
+				e.printStackTrace();
+			}
+		}
+		lastLine = null;
 
-    @Override
-    public void remove() {
-    }
+		return line;
+	}
+
+	@Override
+	public void remove() {
+	}
 }

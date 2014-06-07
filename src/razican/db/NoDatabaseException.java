@@ -7,23 +7,23 @@ package razican.db;
  */
 public class NoDatabaseException extends Exception {
 
-    private static final long serialVersionUID = 1265142422211981500L;
+	private static final long serialVersionUID = 1265142422211981500L;
 
-    /**
-     * Default constructor. The default message is: 'The database does not
-     * exist'
-     */
-    public NoDatabaseException() {
-	super("The database does not exist");
-    }
+	/**
+	 * Default constructor. The default message is: 'The database does not
+	 * exist'
+	 */
+	public NoDatabaseException() {
+		super("The database does not exist");
+	}
 
-    /**
-     * Creates the exception with a personalized message
-     * 
-     * @param message
-     *            - Message for the exception
-     */
-    public NoDatabaseException(final String message) {
-	super(message);
-    }
+	/**
+	 * Creates the exception with a personalized message
+	 * 
+	 * @param message
+	 *            - Message for the exception
+	 */
+	public NoDatabaseException(final String message) {
+		super(message);
+	}
 }

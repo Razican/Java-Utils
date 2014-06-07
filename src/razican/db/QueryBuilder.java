@@ -10,21 +10,21 @@ import java.util.Map;
  */
 public interface QueryBuilder {
 
-    public QueryBuilder select(String[] columns);
+	public QueryBuilder select(String[] columns);
 
-    public QueryBuilder select(String selection);
+	public QueryBuilder select(String selection);
 
-    public QueryBuilder from(String[] tables);
+	public QueryBuilder from(String[] tables);
 
-    public QueryBuilder from(String from);
+	public QueryBuilder from(String from);
 
-    public QueryBuilder where(Map<String, String> conditions);
+	public QueryBuilder where(Map<String, String> conditions);
 
-    public QueryBuilder where(String where);
+	public QueryBuilder where(String where);
 
-    public ResultSet execute();
+	public ResultSet execute();
 
-    public QueryBuilder set(Map<String, String> values);
+	public QueryBuilder set(Map<String, String> values);
 
-    public int update();
+	public int update();
 }
