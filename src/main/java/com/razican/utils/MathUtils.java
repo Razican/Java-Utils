@@ -57,15 +57,15 @@ public class MathUtils {
 	/**
 	 * Gets the n'th byte of an integer, starting from right
 	 * 
-	 * @param j
+	 * @param number
 	 *            - The int to convert
 	 * @param n
 	 *            - The number of the byte. From 0 to 3.
 	 * @return The byte in that position
 	 */
-	public static byte getByte(final int j, final int n) {
+	public static byte getByte(final int number, final int n) {
 		if (n < 4) {
-			return (byte) (j >> n * 8);
+			return (byte) (number >> n * 8);
 		} else {
 			return 0;
 		}
