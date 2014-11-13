@@ -6,6 +6,7 @@ import java.nio.CharBuffer;
 import java.nio.charset.CharacterCodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetEncoder;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
@@ -119,9 +120,9 @@ public final class StringUtils {
 		byte[] sha1hash = new byte[40];
 		try {
 			final MessageDigest md = MessageDigest.getInstance("SHA-1");
-			md.update(str.getBytes("UTF-8"), 0, str.length());
+			md.update(str.getBytes(StandardCharsets.UTF_8));
 			sha1hash = md.digest();
-		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
+		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
 
@@ -170,15 +171,5 @@ public final class StringUtils {
 			return s.substring(0, 1).toUpperCase() + s.substring(1);
 		else
 			return s;
-	}
-	
-	public static void main(String[] args) throws UnsupportedEncodingException, CharacterCodingException {
-		
-		char[] result1 = {'h', 'j', '6', '¬'};
-		System.out.println(Arrays.toString(StringUtils.toByte(result1, "UTF-8")));
-		
-		
-		byte[] test1 = {104, 106, 54, -62, -84};
-		System.out.println(Arrays.toString(StringUtils.toChar(test1, "UTF-8")));
 	}
 }

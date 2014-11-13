@@ -23,7 +23,7 @@ public class StringUtilsTest {
 		Assert.assertEquals("da39a3ee5e6b4b0d3255bfef95601890afd80709", StringUtils.sha1());
 		Assert.assertEquals("da39a3ee5e6b4b0d3255bfef95601890afd80709", StringUtils.sha1(""));
 		Assert.assertEquals("6367c48dd193d56ea7b0baad25b19455e529f5ee", StringUtils.sha1("abc123"));
-		Assert.assertEquals("c963b7df20488e9ef50c1a309c1fa747ab5d8822", StringUtils.sha1("hj6¬"));
+		Assert.assertEquals("7f9d591232c5fde9f757c4d8472921517991dc3c", StringUtils.sha1("hj6¬"));
 		
 		char[] test5 = {};
 		char[] test6 = {'a', 'b', 'c', '1', '2', '3'};
@@ -31,7 +31,7 @@ public class StringUtilsTest {
 		
 		Assert.assertEquals("da39a3ee5e6b4b0d3255bfef95601890afd80709", StringUtils.sha1(test5));
 		Assert.assertEquals("6367c48dd193d56ea7b0baad25b19455e529f5ee", StringUtils.sha1(test6));
-		Assert.assertEquals("c963b7df20488e9ef50c1a309c1fa747ab5d8822", StringUtils.sha1(test7));
+		Assert.assertEquals("7f9d591232c5fde9f757c4d8472921517991dc3c", StringUtils.sha1(test7));
 	}
 	
 	@Test
