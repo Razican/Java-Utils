@@ -1,4 +1,4 @@
-package razican.utils;
+package com.razican.utils;
 
 /**
  * @author Razican (Iban Eguia)

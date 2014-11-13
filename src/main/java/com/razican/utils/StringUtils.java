@@ -1,4 +1,4 @@
-package razican.utils;
+package com.razican.utils;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
@@ -85,14 +85,17 @@ public final class StringUtils {
 
 		final CharBuffer charB = CharBuffer.wrap(charArray);
 		final ByteBuffer byteB = encoder.encode(charB);
+		
+		byte[] ba1 = new byte[byteB.limit()];
+		byteB.get(ba1);
 
-		return byteB.array();
+		return ba1;
 	}
 
 	/**
 	 * Converts a byte array to a char array
 	 * 
-	 * @param byteArray
+	 * @param byteArray		Assert.assertEquals(StringUtils.firstToUpper("123abc"), "123abc");
 	 *            - Byte array containing characters Shouldn't be used with
 	 *            passwords, it uses intermediate strings
 	 * @param enc
@@ -163,6 +166,19 @@ public final class StringUtils {
 	 * @return The string with the first letter in capital
 	 */
 	public static String firstToUpper(final String s) {
-		return s.substring(0, 1).toUpperCase() + s.substring(1);
+		if (s.length() > 0)
+			return s.substring(0, 1).toUpperCase() + s.substring(1);
+		else
+			return s;
+	}
+	
+	public static void main(String[] args) throws UnsupportedEncodingException, CharacterCodingException {
+		
+		char[] result1 = {'h', 'j', '6', '¬'};
+		System.out.println(Arrays.toString(StringUtils.toByte(result1, "UTF-8")));
+		
+		
+		byte[] test1 = {104, 106, 54, -62, -84};
+		System.out.println(Arrays.toString(StringUtils.toChar(test1, "UTF-8")));
 	}
 }

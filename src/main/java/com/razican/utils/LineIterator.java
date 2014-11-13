@@ -1,4 +1,4 @@
-package razican.utils;
+package com.razican.utils;
 
 import java.io.BufferedReader;
 import java.io.IOException;

@@ -1,0 +1,29 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.razican.utils</groupId>
+  <artifactId>java-utils</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+  <name>Java Utils</name>
+  <description>Utilities for Java</description>
+  <issueManagement>
+  	<url>https://github.com/Razican/Java-Utils/issues</url>
+  	<system>GitHub</system>
+  </issueManagement>
+  <ciManagement>
+  	<system>Travis-CI</system>
+  	<url>https://travis-ci.org/Razican/Java-Utils</url>
+  </ciManagement>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+  		<artifactId>maven-compiler-plugin</artifactId>
+  		<version>3.1</version>
+  		<configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

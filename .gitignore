@@ -1,8 +1,18 @@
-*.class
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
 
-# Package Files #
-*.jar
-*.war
-*.ear
-/doc
-/bin
+*redcar*
+*geany*
+*error_log*
+.DS_Store
+*.sublime-*
+node_modules
+*~
+
+.project
+.settings/
+.classpath
