@@ -13,7 +13,7 @@ import java.util.Arrays;
 
 /**
  * String Utilities
- * 
+ *
  * @author Razican (Iban Eguia)
  */
 public final class StringUtils {
@@ -23,7 +23,7 @@ public final class StringUtils {
 
 	/**
 	 * Converts data to an hexadecimal string
-	 * 
+	 *
 	 * @param data
 	 *            - Data to convert to hexadecimal
 	 * @return String in hexadecimal
@@ -47,7 +47,7 @@ public final class StringUtils {
 
 	/**
 	 * Converts a character array to a byte array
-	 * 
+	 *
 	 * @param charArray
 	 *            - Character array in ASCII
 	 * @return Byte array representing chars
@@ -71,7 +71,7 @@ public final class StringUtils {
 
 	/**
 	 * Converts a character array to a byte array
-	 * 
+	 *
 	 * @param charArray
 	 *            - Character array
 	 * @param enc
@@ -86,8 +86,8 @@ public final class StringUtils {
 
 		final CharBuffer charB = CharBuffer.wrap(charArray);
 		final ByteBuffer byteB = encoder.encode(charB);
-		
-		byte[] ba1 = new byte[byteB.limit()];
+
+		final byte[] ba1 = new byte[byteB.limit()];
 		byteB.get(ba1);
 
 		return ba1;
@@ -95,10 +95,11 @@ public final class StringUtils {
 
 	/**
 	 * Converts a byte array to a char array
-	 * 
-	 * @param byteArray		Assert.assertEquals(StringUtils.firstToUpper("123abc"), "123abc");
-	 *            - Byte array containing characters Shouldn't be used with
-	 *            passwords, it uses intermediate strings
+	 *
+	 * @param byteArray
+	 *            Assert.assertEquals(StringUtils.firstToUpper("123abc"),
+	 *            "123abc"); - Byte array containing characters Shouldn't be
+	 *            used with passwords, it uses intermediate strings
 	 * @param enc
 	 *            - Encoding to use
 	 * @return Character array
@@ -111,7 +112,7 @@ public final class StringUtils {
 
 	/**
 	 * Creates the Sha1 representation of a given string
-	 * 
+	 *
 	 * @param str
 	 *            - Text to crypt in Sha1
 	 * @return Generated Sha1 hash
@@ -122,7 +123,7 @@ public final class StringUtils {
 			final MessageDigest md = MessageDigest.getInstance("SHA-1");
 			md.update(str.getBytes(StandardCharsets.UTF_8));
 			sha1hash = md.digest();
-		} catch (NoSuchAlgorithmException e) {
+		} catch (final NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
 
@@ -131,7 +132,7 @@ public final class StringUtils {
 
 	/**
 	 * Generates the Sha1 representation for the empty string
-	 * 
+	 *
 	 * @return empty string coded in sha1
 	 */
 	public static String sha1() {
@@ -140,7 +141,7 @@ public final class StringUtils {
 
 	/**
 	 * Generates the Sha1 representation of a character array
-	 * 
+	 *
 	 * @param charArray
 	 *            - character array to crypt in sha1
 	 * @return Generated sha1 hash
@@ -150,9 +151,14 @@ public final class StringUtils {
 
 		try {
 			final MessageDigest md = MessageDigest.getInstance("SHA-1");
-			md.update(toByte(charArray, "UTF-8"), 0, charArray.length);
+
+			final ByteBuffer buf = StandardCharsets.UTF_8.encode(CharBuffer.wrap(charArray));
+			final byte[] utf8 = new byte[buf.limit()];
+			buf.get(utf8);
+			md.update(utf8);
+
 			sha1hash = md.digest();
-		} catch (NoSuchAlgorithmException | CharacterCodingException e) {
+		} catch (final NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}
 
@@ -161,7 +167,7 @@ public final class StringUtils {
 
 	/**
 	 * Converts the first letter of a given string to capital
-	 * 
+	 *
 	 * @param s
 	 *            - String to convert
 	 * @return The string with the first letter in capital
