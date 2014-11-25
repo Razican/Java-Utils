@@ -20,7 +20,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * File utilities
- * 
+ *
  * @author Razican (Iban Eguia)
  * @author Jordan Aranda Tejada
  */
@@ -31,7 +31,7 @@ public final class FileUtils {
 
 	/**
 	 * Converts the contents of a file to a String
-	 * 
+	 *
 	 * @param filename
 	 *            - The name of the file to get as a string
 	 * @return String with the contents of the file, null if the file does not
@@ -45,7 +45,7 @@ public final class FileUtils {
 
 	/**
 	 * Converts the contents of a file to a String
-	 * 
+	 *
 	 * @param file
 	 *            - The file to get as a string
 	 * @return String with the contents of the file, null if the file does not
@@ -61,12 +61,15 @@ public final class FileUtils {
 			} catch (final FileNotFoundException e) {
 			}
 
-			final FileChannel fc = stream.getChannel();
-			final MappedByteBuffer bb = fc.map(FileChannel.MapMode.READ_ONLY, 0, fc.size());
+			String content = null;
 
-			final String content = Charset.defaultCharset().decode(bb).toString();
+			if (stream != null) {
+				final FileChannel fc = stream.getChannel();
+				final MappedByteBuffer bb = fc.map(FileChannel.MapMode.READ_ONLY, 0, fc.size());
 
-			stream.close();
+				content = Charset.defaultCharset().decode(bb).toString();
+				stream.close();
+			}
 
 			return content;
 		}
@@ -75,7 +78,7 @@ public final class FileUtils {
 
 	/**
 	 * Gets the LineIterator for the given file
-	 * 
+	 *
 	 * @param filename
 	 *            - Name of the file
 	 * @return a LineIterator of the lines of the document
@@ -88,7 +91,7 @@ public final class FileUtils {
 
 	/**
 	 * Gets the LineIterator for the given file
-	 * 
+	 *
 	 * @param file
 	 *            - The file
 	 * @return a LineIterator of the lines of the document
@@ -101,7 +104,7 @@ public final class FileUtils {
 
 	/**
 	 * Counts the number of lines in the given file
-	 * 
+	 *
 	 * @param filename
 	 *            - The name of the file
 	 * @return The number of lines
@@ -112,7 +115,7 @@ public final class FileUtils {
 
 	/**
 	 * Counts the number of lines in the given file
-	 * 
+	 *
 	 * @param file
 	 *            - The file
 	 * @return The number of lines
@@ -145,7 +148,7 @@ public final class FileUtils {
 
 	/**
 	 * Opens a file with a file chooser
-	 * 
+	 *
 	 * @param description
 	 *            - The description of the file
 	 * @param extensions
@@ -171,7 +174,7 @@ public final class FileUtils {
 
 	/**
 	 * Saves a file with a file chooser
-	 * 
+	 *
 	 * @param content
 	 *            - The object to save
 	 * @param description
@@ -182,9 +185,11 @@ public final class FileUtils {
 	 *            - The file in where to save
 	 * @return The path of the saved file
 	 */
-	public static String saveObject(final Object content, final String description, final String extension, final File file) {
+	public static String saveObject(final Object content, final String description,
+			final String extension, final File file) {
 		final JFileChooser fileChooser = new JFileChooser();
-		final FileNameExtensionFilter langFilter = new FileNameExtensionFilter(description, extension);
+		final FileNameExtensionFilter langFilter =
+				new FileNameExtensionFilter(description, extension);
 		fileChooser.setFileFilter(langFilter);
 		fileChooser.setSelectedFile(file);
 		String path = "";
@@ -195,8 +200,12 @@ public final class FileUtils {
 					path += "." + extension;
 				}
 				final File file2 = new File(path);
-				if ((file2.exists() && JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(null, "The file exists, do you want to replace it?", "File Exists", JOptionPane.YES_NO_OPTION)) || !file2.exists()) {
-					final ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path));
+				if ((file2.exists() && JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(null,
+						"The file exists, do you want to replace it?", "File Exists",
+						JOptionPane.YES_NO_OPTION))
+						|| !file2.exists()) {
+					final ObjectOutputStream oos =
+							new ObjectOutputStream(new FileOutputStream(path));
 					oos.writeObject(content);
 					oos.close();
 				}
@@ -210,20 +219,22 @@ public final class FileUtils {
 
 	/**
 	 * Saves a file with a file chooser
-	 * 
+	 *
 	 * @param content
 	 *            - The object to save
 	 * @param description
 	 *            - The description of the file
 	 * @param extension
 	 *            - The extension of the file
-	 * 
+	 *
 	 * @return The path of the saved file
 	 */
-	public static String saveByteArray(final ByteArrayOutputStream content, final String description, final String extension) {
+	public static String saveByteArray(final ByteArrayOutputStream content,
+			final String description, final String extension) {
 
 		final JFileChooser fileChooser = new JFileChooser();
-		final FileNameExtensionFilter langFilter = new FileNameExtensionFilter(description, extension);
+		final FileNameExtensionFilter langFilter =
+				new FileNameExtensionFilter(description, extension);
 		fileChooser.setFileFilter(langFilter);
 		String path = "";
 		try {
@@ -233,7 +244,10 @@ public final class FileUtils {
 					path += "." + extension;
 				}
 				final File file2 = new File(path);
-				if ((file2.exists() && JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(null, "The file exists, do you want to replace it?", "File Exists", JOptionPane.YES_NO_OPTION)) || !file2.exists()) {
+				if ((file2.exists() && JOptionPane.OK_OPTION == JOptionPane.showConfirmDialog(null,
+						"The file exists, do you want to replace it?", "File Exists",
+						JOptionPane.YES_NO_OPTION))
+						|| !file2.exists()) {
 					final FileOutputStream fos = new FileOutputStream(path);
 					fos.write(content.toByteArray());
 					fos.close();
